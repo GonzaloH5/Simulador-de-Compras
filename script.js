@@ -9,6 +9,8 @@ const articulos = [
     { id: 4, nombre: "Sombrero", precio: 300 }
 ];
 
+let carrito = [];
+
 function mostrarArticulos() {
     let lista = "Artículos disponibles:\n";
 
@@ -16,4 +18,12 @@ function mostrarArticulos() {
         lista += `${articulo.id}. ${articulo.nombre} - $${articulo.precio}\n`;
     }
     return lista;
+}
+
+function calcularTotal(carrito) {
+    let total = 0;
+    for (let articulo of carrito) {
+        total += articulo.precio;
+    }
+    return total;
 }
