@@ -10,6 +10,7 @@ const articulos = [
 ];
 
 let carrito = [];
+let seguircomprando = true;
 
 function mostrarArticulos() {
     let lista = "Artículos disponibles:\n";
@@ -20,6 +21,21 @@ function mostrarArticulos() {
     return lista;
 }
 
+function agregarAlCarrito(id) {
+    let encontrado = false;
+
+    for (let articulo of articulos) {
+        if (articulo.id === id) {
+            carrito.push(articulo);
+            encontrado = true;
+            return `${articulo.nombre} ha sido agregado.`;
+        }
+    }
+    if (!encontrado) {
+        return "Artículo no encontrado.";
+    }
+}
+
 function calcularTotal(carrito) {
     let total = 0;
     for (let articulo of carrito) {
@@ -27,3 +43,19 @@ function calcularTotal(carrito) {
     }
     return total;
 }
+
+while (seguircomprando) {
+    let decision = prompt("¿Querés agregar un artículo al carrito? (si/no)").toLowerCase();
+    if (decision === "si") {
+        alert(mostrarArticulos());
+        let idElegido = prompt("Ingresá el numero de articulo que querés:");
+        let id = Number(idElegido);
+        let resultado = agregarAlCarrito(id);
+    }
+    else if (decision === "no") {
+        seguircomprando = false;
+    }
+}
+
+alert(resultado);
+alert("Total a pagar: $" + calcularTotal(carrito));
