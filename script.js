@@ -2,6 +2,16 @@
 // SIMULADOR CARRITO DE COMPRAS
 //---------------------------------------------
 
+// --------------------------------------------
+// DOM
+// --------------------------------------------
+const contenedorArticulos = document.getElementById("lista-articulos");
+const contenedorCarrito = document.getElementById("carrito");
+const totalSpan = document.getElementById("total");
+
+// ---------------------------------------------
+// DATOS
+// ---------------------------------------------
 const articulos = [
     { id: 1, nombre: "Ram 4gb DDR4", precio: 30 },
     { id: 2, nombre: "Ram 8gb DDR4", precio: 60 },
@@ -42,19 +52,6 @@ function agregarAlCarrito(id) {
     }
 }
 
-while (seguircomprando) {
-    let decision = prompt("¿Querés agregar un artículo al carrito? (si/no)").toLowerCase();
-    if (decision === "si") {
-        console.log(mostrarArticulos());
-        let idElegido = prompt("Ingresá el numero de articulo que querés:");
-        let id = Number(idElegido);
-        let resultado = agregarAlCarrito(id);
-    }
-    else if (decision === "no") {
-        seguircomprando = false;
-    }
-}
-
 function calcularTotal(carrito) {
     let total = 0;
     for (let articulo of carrito) {
@@ -63,4 +60,59 @@ function calcularTotal(carrito) {
     return total;
 }
 
-alert("Total a pagar: $" + calcularTotal(carrito));
+function renderizarArticulos() {
+    articulos.forEach(articulo => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+            <p>${articulo.nombre} - $${articulo.precio}</p>
+            <button data-id="${articulo.id}">Agregar</button>
+        `;
+        contenedorArticulos.appendChild(div);
+    });
+
+}
+renderizarArticulos();
+
+contenedorArticulos.addEventListener("click", function (e) {
+    if (e.target.tagName === "BUTTON") {
+        const id = Number(e.target.getAttribute("data-id"));
+        agregarAlCarrito(id);
+        actualizarCarrito();
+    }
+});
+
+function actualizarCarrito() {
+    contenedorCarrito.innerHTML = "";
+    carrito.forEach(articulo => {
+
+        const p = document.createElement("p");
+        p.textContent = `${articulo.nombre} - $${articulo.precio}`;
+
+        contenedorCarrito.appendChild(p);
+    });
+
+    totalSpan.textContent = calcularTotal(carrito);
+}
+
+function confirmarcompra() {
+    if (carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+    }
+    const total = calcularTotal(carrito);
+    const confirmar = confirm(`El total es $${total}. ¿Desea confirmar la compra?`);
+    if (confirmar) {
+        alert("¡Compra confirmada! Gracias por su compra.");
+        carrito = [];
+        actualizarCarrito();
+    } else {
+        alert("Compra cancelada.");
+    }
+}
+
+const btnConfirmar = document.getElementById("btn-confirmar");
+
+if (btnConfirmar) {
+    btnConfirmar.addEventListener("click", confirmarcompra);
+}
