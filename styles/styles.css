@@ -1,0 +1,81 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: #171a25;
+}
+
+footer {
+  background-color: #171a25;
+  color: #e0e0e0;
+  padding: 7rem;
+}
+footer ul {
+  text-align: center;
+  justify-content: center;
+}
+footer ul a {
+  text-decoration: none;
+  color: #e0e0e0;
+  font-weight: bold;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin-right: 1rem;
+  gap: 1rem;
+}
+ul a {
+  text-decoration: none;
+  color: #e0e0e0;
+  font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.titulo {
+  text-align: center;
+  margin: 4rem;
+}
+.titulo h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 24px;
+}
+.titulo h2 {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.contenido {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 4rem 2rem;
+}
+.contenido .productos,
+.contenido .contacto {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.boton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #171a25;
+  color: #e0e0e0;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/*# sourceMappingURL=styles.css.map */
