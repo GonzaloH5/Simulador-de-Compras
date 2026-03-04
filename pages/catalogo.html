@@ -23,17 +23,27 @@
 
     <main>
         <section>
-            <h1>Catálogo</h1>
-            <div id="lista-articulos"></div>
+            <div class="listado-header">
+                <h1>Catálogo</h1>
+                <div class="carrito">
+                    <h2>Carrito</h2>
+                    <div id="carrito"></div>
+                    <p>Total: $<span id="total">0</span></p>
+                    <button id="btn-confirmar">Confirmar compra</button>
+                </div>
         </section>
 
-        <section>
-            <h2>Carrito</h2>
-            <div id="carrito"></div>
-            <p>Total: $<span id="total">0</span></p>
-            <button id="btn-confirmar">Confirmar compra</button>
+        <section id="listado">
+            <div class="listado" id="lista-articulos"></div>
         </section>
     </main>
+
+    <footer>
+        <ul>
+            <li>Redes Sociales</li>
+            <li>Ubicación</li>
+        </ul>
+    </footer>
 
     <script src="../script.js"></script>
 </body>
